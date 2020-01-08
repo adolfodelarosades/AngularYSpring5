@@ -95,6 +95,46 @@ Este es todo el cambio, todo sigue funcionando igual, pero queda más limpio, lo
 
 ## Creando la clase de Servicio ClienteService y la Inyección de Dependencia 07:51
 
+Aun que sacamos los datos del componente, aun quedan rastros de los datos dentro del componente, como la importación del archivo `clientes.json` y el uso de la constante `CLIENTES`, **la idea es DESACOPLAR COMPLETAMENTE TODO LO REFERENTE A LOS DATOS, MODELO O LÓGICA DE NEGOCIOS DE LA CLASE Component** por lo que tenemos que **mover `CLIENTES` a una clase especializada en la Lógica de Negocios** que sería **nuestra clase ClienteService**
+
+* Dentro de la carpeta `clientes` crear el **servicio** cliente con el comando: `ng g service /clientes/cliente` se crea una clase de tipo `service`:
+```js
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ClienteService {
+
+  constructor() { }
+}
+```
+El decorador `@Injectable` representa lógica de negocios por lo que las clases de servicio llevaran este decorador, lo que nos permite **INYECTAR EN OTRO COMPONENTE VÍA INYECCION DE DEPENDENCIAS**.
+Otra cosa muy importante es que dentro de `@Injectable` tenemos el atributo `providedIn: 'root'` lo que permite usar el servicio en cualquier componente, **ANTES TENIAMOS QUE DECLARAR EL SERVICIO EN EL `app.module.ts` DENTRO DEL APARTADO `providers: []`.
+
+* Mover el import de CLIENTES del `clientes.component.ts` y lo llevamos a `cliente.service.ts`
+* Crear el método `getClientes()` de tipo array de clientes, que va a retornar los clientes.
+```js
+getClientes(): Cliente[] {
+    return CLIENTES;
+}
+```
+* Inyectar la clase service `cliente.service.ts` en `cliente.component.ts` esto se hace en el constructo:
+`constructor(private clienteService: ClienteService) { }`
+* Y en el método `ngOnInit()` le asignamos a nuestro atributo `clientes` el método `getClientes()`:
+```js
+ngOnInit() {
+  this.clientes = this.clienteService.getClientes();
+}
+```
+
+**YA TENEMOS SEPARADOS LOS DIFERENTES ROLES:**
+
+* La clase `component` representa a nuestro **CONTROLADOR**
+* La clase `service` representa a nuestra al **MODELO** o Lógica de Negocio
+* El archivo `html` representa a la **VISTA**
+
+
 ## Implementando Observable en nuestra clase Servicio ClienteService 08:18
 
 ## Implementando Rutas en Angular y navegación 05:14
