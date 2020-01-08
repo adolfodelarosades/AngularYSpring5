@@ -60,10 +60,10 @@ Se crea en componente `header.component` **MANUALMENTE!!!**
 
 ## Directiva estructural *ngIf 04:48
 
-* Usamos la directiva `*ngIf` para que se muestre algo según valor de la variable booleana que usa: `<ul class="list-group" *ngIf="mostrar">`
+* Usamos la directiva `*ngIf` para que se muestre algo según valor de la variable booleana que usa: `<ul class='list-group' *ngIf='mostrar'>`
 * `mostrar` es un atributo declarado en `directiva.component.ts`: `mostrar: boolean = true;`
 * Para cambiar el valor de `mostrar` usamos un botón para que ejecute un evento cada que se pulse para Ocultar o Mostrar usando el operador ternario `?`: 
-`<button type="button" (click)="mostrar = mostrar ? false: true" class="btn btn-primary my-3">{{ mostrar ? 'Ocultar' : 'Mostrar' }}</button>`
+`<button type='button' (click)='mostrar = mostrar ? false: true' class='btn btn-primary my-3'>{{ mostrar ? 'Ocultar' : 'Mostrar' }}</button>`
 * Podemos usar un método para no tener todo el código en el HTML:
 ```js
 mostrar: boolean = true;
@@ -76,5 +76,5 @@ mostrarOcultar(){
 ```
 Nótese que para hacer referencia a las propiedades dentro del método se usa `this`. La llamada en el HTML se hace así:
 ```html
-<button type="button" (click)="mostrarOcultar()" class="btn btn-primary my-3">{{ textoBoton }}</button>
+<button type='button' (click)='mostrarOcultar()' class='btn btn-primary my-3'>{{ textoBoton }}</button>
 ```
