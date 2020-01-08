@@ -67,11 +67,11 @@ Se crea en componente `header.component` **MANUALMENTE!!!**
 * Podemos usar un método para no tener todo el código en el HTML:
 ```js
 mostrar: boolean = true;
-textoBoton: string = "Ocultar";
+textoBoton: string = 'Ocultar';
 
 mostrarOcultar(){
-  this.mostrar = this.mostrar ? false: true;
-  this.mostrar ? this.textoBoton = "Ocultar" : this.textoBoton = "Mostrar";
+  this.mostrar = this.mostrar ? false : true;
+  this.mostrar ? this.textoBoton = 'Ocultar' : this.textoBoton = 'Mostrar';
 }
 ```
 Nótese que para hacer referencia a las propiedades dentro del método se usa `this`. La llamada en el HTML se hace así:

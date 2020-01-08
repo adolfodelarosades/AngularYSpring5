@@ -10,7 +10,7 @@ export class DirectivaComponent implements OnInit {
   listaCurso: string[] = ['TypeScript', 'JavaScript', 'Java SE', 'C#', 'PHP'];
 
   mostrar: boolean = true;
-  textoBoton: string = "Ocultar";
+  textoBoton: string = 'Ocultar';
 
   constructor() { }
 
@@ -18,8 +18,8 @@ export class DirectivaComponent implements OnInit {
   }
 
   mostrarOcultar(){
-    this.mostrar = this.mostrar ? false: true;
-    this.mostrar ? this.textoBoton = "Ocultar" : this.textoBoton = "Mostrar";
+    this.mostrar = this.mostrar ? false : true;
+    this.mostrar ? this.textoBoton = 'Ocultar' : this.textoBoton = 'Mostrar';
   }
 
 }
