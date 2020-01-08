@@ -25,7 +25,7 @@ TO-DO: ESTUDIAR A FONDO
 * La integración se hizo manualmente en el archivo `index.html`.
 * Se ingreso una NavBar en `app.component.html`.
 
-## Creando nuevo componente HeaderComponent 10:37
+## Creando nuevo componente HeaderComponent (MANUAL) 10:37
 
 Se crea en componente `header.component` **MANUALMENTE!!!**
 
@@ -40,7 +40,7 @@ Se crea en componente `header.component` **MANUALMENTE!!!**
 * Mover el contenido del templeate del archivo `header.component.ts` al archivo `header.component.html`
 * En `header.component.ts`cambiar `template` por `templateUrl` y hacer referencia a la plantilla `./header.component.html`
 
-## Creando nuevo componente FooterComponent 10:07
+## Creando nuevo componente FooterComponent (SEMI-MANUAL) 10:07
 
 * Creaar clase con comando: `ng generate class /footer/footer.component`
 * La clase generada contiene un error basta quitarle el punto (Por que es la notación de archivo no de clase)
@@ -51,6 +51,11 @@ Se crea en componente `header.component` **MANUALMENTE!!!**
 * Crear el archivo `footer.component.css` y crear su contenido.
 * Registrar el `css` dentro del archivo `footer.component.ts` con `styleUrls` que será un array.
 
-## Directiva estructural *ngFor 07:07
+## Directiva estructural *ngFor [CREAR COMPONENTE Directiva (AUTOMATICAMENTE)] 07:07
+
+* Crear componente con comando: `ng generate component directiva` o `ng g c directiva` Crea TODO.
+* Definir el array de cursos `listaCurso` en `directiva.component.ts`.
+* Iterar la `listaCurso` en `directiva.component.html` usando la directiva `*ngFor` (usar ngFor en el editor para que pinte toda la estructura).
+* Colocar el selector `app-directiva` en `app.commponent.html`.
 
 ## Directiva estructural *ngIf 04:48
