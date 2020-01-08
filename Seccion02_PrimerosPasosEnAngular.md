@@ -40,8 +40,16 @@ Se crea en componente `header.component` **MANUALMENTE!!!**
 * Mover el contenido del templeate del archivo `header.component.ts` al archivo `header.component.html`
 * En `header.component.ts`cambiar `template` por `templateUrl` y hacer referencia a la plantilla `./header.component.html`
 
-
 ## Creando nuevo componente FooterComponent 10:07
+
+* Creaar clase con comando: `ng generate class /footer/footer.component`
+* La clase generada contiene un error basta quitarle el punto (Por que es la notación de archivo no de clase)
+* Completar la clase con sus decoradores, selector, platilla HTML, etc.
+* Crear archivo `footer.component.html` y crear su contenido.
+* Incluir el selector de `footer.component.ts` en `app.component.html`
+* Incluir `FooterComponent` en `app.module.ts`
+* Crear el archivo `footer.component.css` y crear su contenido.
+* Registrar el `css` dentro del archivo `footer.component.ts` con `styleUrls` que será un array.
 
 ## Directiva estructural *ngFor 07:07
 
