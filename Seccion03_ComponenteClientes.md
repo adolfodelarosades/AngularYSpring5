@@ -57,6 +57,10 @@ clientes: Cliente[] = [
 ```
 * Poner el selector `app-clientes` en `app.component.html`
 
+El resultado es:
+
+<img src="/images/ListaClientes.png">
+
 ## Creando archivo clientes.json.ts con la lista de objetos 02:51
 
 Vamos a desacoplar el listado de los clientes del componente Clientes ya que estamos mezclando datos con lógica.
@@ -134,8 +138,60 @@ ngOnInit() {
 * La clase `service` representa a nuestra al **MODELO** o Lógica de Negocio
 * El archivo `html` representa a la **VISTA**
 
-
 ## Implementando Observable en nuestra clase Servicio ClienteService 08:18
+
+Vamos a modificar la clase `cliente.service` para que las peticiones sean más **REACTIVAS** y **ASINCRONAS** para cuando trabajemos con el API REST. El método `getCliente()` actual es un método **SINCRONO** por lo que no podría trabajar correntamente con un API REST, ya que se necesita trabajar con peticiones Asincronas que no bloquen nuestra aplicación mientras espera la respuesta del servidor. Además la idea es que se puedan realizar varias peticiones al servidor al mismo tiempo, que no esten sincronizadas entre si, y que se puedan manejar de forma paralela al mismo tiempo y en tiempo real. 
+
+**REACTIVO**
+
+El concepto **REACTIVO** es que reaccione en Tiempo Real y a travéz de flujos de datos con **Streams**, flujos de datos de entrada y salida.
+
+Por lo que tenemos que tenemos que modificar nuestro método `getClientes(): Clientes[]` para que nuestro tipo `Clientes[]` lo transformemos a un **Stream** y para eso utilizamos el **API Observable**.
+
+* Importar la clase Observable: `import { Observable } from 'rxjs';`.
+* Lo que retorna el método `getClientes()` debe ser un **Stream** es decir un **Observable** de clientes: 
+`getClientes(): Observable<Cliente[]> {`
+* Por lo que que retorna `return CLIENTES;` tambien debe ser un observable para que sea del mismo tipo de lo que regresamos:
+`return of(CLIENTES);`
+* Importar el operador `of` de `rxjs`: `import { Observable, of } from 'rxjs';`.
+
+**Hemos convertido nuestro listado de clientes en un Observable en un Stream, en un flujo de datos**
+
+## Concepto Observable y patrón de diseño Observador
+
+El Observable esta basado en el **patrón de diseño Observador**, donde tenemos un **Sujeto que es Observable**, en este caso nuestro Cliente y tenemos también **Observadores**, que estan atentos escuchando un posible cambio en el sujeto, estos observadores se suscriben al sujeto (el `Observable`) y cuando cambia su estado se notifica a los observadores para que lleven a cabo algún proceso o tarea según las necesidades.
+
+Esto debería hacer que cuando cambia algún dato en el servidor(Spring) automáticamente notifique al cliente y se actualicen en tiempo real los datos en el cliente, sin necesidad de recargar la página. 
+
+* En `cliente.component.ts` tenemos que **registrar o suscribir el observador** a nuestros clientes(el `Observable` que es `getClientes() el cual va a ser Observado por Observadores`) por lo que vamos a cambiar:
+```js
+ngOnInit() {
+  this.clientes = this.clienteService.getClientes();
+}
+```
+Por:
+```js
+ngOnInit() {
+  this.clienteService.getClientes().subscribe( 
+    clientes => this.clientes = clientes
+  );
+}
+```
+Desde el observador nos estamos **Suscribiendo** para escuchar al Observable y este nos regresa un resultado que estamos recibiendo en `clientes` y este valor se lo asignamos a nuestro atributo `clientes`, todo ello usando una función anónima, podríamos haber puesto:
+```js
+ngOnInit() {
+  this.clienteService.getClientes().subscribe( 
+    function(clientes) {
+      this.clientes = clientes
+    } 
+  );
+}
+```
+Pero usaremos la función anónima.
+
+La aplicación se sigue viendo igual pero ya esta trabajando de forma REACTIVA y ASINCRONA.
+
+<img src="/images/ListaClientes.png">
 
 ## Implementando Rutas en Angular y navegación 05:14
 
