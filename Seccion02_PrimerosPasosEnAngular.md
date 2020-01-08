@@ -36,6 +36,11 @@ Se crea en componente `header.component` **MANUALMENTE!!!**
 
 ## Separando el template del componente con TemplateUrl 02:31
 
+* Dentro de `header` crear el archivo `header.component.html`
+* Mover el contenido del templeate del archivo `header.component.ts` al archivo `header.component.html`
+* En `header.component.ts`cambiar `template` por `templateUrl` y hacer referencia a la plantilla `./header.component.html`
+
+
 ## Creando nuevo componente FooterComponent 10:07
 
 ## Directiva estructural *ngFor 07:07
