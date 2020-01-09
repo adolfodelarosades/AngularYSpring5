@@ -195,7 +195,70 @@ La aplicación se sigue viendo igual pero ya esta trabajando de forma REACTIVA y
 
 ## Implementando Rutas en Angular y navegación 05:14
 
+Utilizando rutas podemos dividir nuestra aplicación en varias secciones o áreas las cuales se podrían llamar páginas pero en realidad no son páginas. Recordemos que una aplicación en Angular son aplicaciones en una sola página **SPA Single Page Aplication**.
+Es decir tenemos una sola página para renderizar páginas diferentes y Angular utiliza esta técnica del Routing para realizarlo.
+
+Entonces la idea es:
+* Dentro de la página de Rutas anidar un contenido de un componente que esté mapeado a una URL.
+* El siguiente paso sería indicar angular que URL se tienen que mapear o asignar a nuestros componentes 
+
+En el codigo:
+
+* Ir a `app.module.ts`
+* Importar `RouterModule` y `Routes` : `import { RouterModule, Routes } from '@angular/router';`
+* Crear constante `routes` del tipo `Routes`, que contiene un array de rutas donde vamos a definir las rutas o URL de cada componente de nuestra aplicación:
+```js
+const routes: Routes = [
+  {path: '', redirectTo: '/clientes', pathMatch: 'full'},
+  {path: 'directivas', component: DirectivaComponent},
+  {path: 'clientes', component: ClientesComponent}
+];
+```
+   El path vacio representa nuestra página principal o home que redige a `/clientes` el `pathMatch: 'full'` hace un Match completo con la URL.
+* Finalmente hay que importar el `RouterModule` pasandole como parámetro nuestro array de rutas:
+```js
+imports: [
+  BrowserModule,
+  RouterModule.forRoot(routes)
+],
+```
+* Ir a `app.component.html` 
+* Poner la directiva especial para cargar las rutas `<router-outlet>` en lugar de la que tenemos actualmente `<app-clientes>`:
+```js
+<app-header></app-header>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>
+```
+`<router-outlet>` es una directiva de Angular para indicar donde se van a renderizar el contenido (el componente) de cada ruta que seleccionemos.
+* Ir a `header.component.html`
+* Meter los links correspondientes para cada opción del menú.
+```js
+<li class='nav-item' routerLinkActive="active">
+    <a class='nav-link' routerLink="/directivas">Directivas</a>
+</li>
+<li class='nav-item' routerLinkActive="active">
+    <a class='nav-link' routerLink="/clientes">Clientes</a>
+</li>
+```
+
+La directiva `routerLink` permite agregar el link de lo que queremos mostrar.
+La directiva `routerLinkActive` dejamos marcada la opción seleccionada.
+
+Guardamos y vamos a levantar el servidor, automáticamente redirige a Clientes y lo marca, si nos vamos a Directivas también lo marca. De esta forma podemos tenemos nuestras propias rutas que por estar mapeado a los distintos componentes los cargan al seleccionarlas.
+
+En ningún momento se está actualizando la página, siempre nos mantenemos en una sola página, pero lo que cambia es el contenido principal, a través de la directiva `<router-outlet>` que tenemos en la plantilla principal `app.component.html`.
+
 ## Actualización: sobre el archivo angular.cli.json vs angular.json 00:41
+
+¿Los archivos angular.cli.json y angular.json son los mismo?
+
+Desde la versión 6 y 7 de angular se pasó a llamar angular.json, pero en versiones anteriores de angular se llamaba angular.cli.json pero básicamente son y sirven para lo mismo.
+
+¿Por qué no me aparece el angular.cli.json?
+
+Se debe a que estamos trabajando y estamos actualizados
 
 ## Configurando e integrando Bootstrap de forma local en nuestra app 05:32
 
