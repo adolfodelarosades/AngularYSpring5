@@ -288,6 +288,40 @@ Se debe a que estamos trabajando y estamos actualizados
 </html>
 ```
 
+### Primera forma
+
+* Ir a `angular.json`
+* Colocar los `css` en el array `"styles` y los `js` en el array `"scripts"`:
+```js
+"styles": [
+  "src/styles.css",
+  "assets/css/bootstrap.min.css"
+],
+"scripts": [
+  "assets/js/jquery-3.4.1.slim.min.js",
+  "assets/js/popper.min.js",
+  "assets/js//bootstrap.min.js"
+]
+```
+* Quitar los links en `index.html`
+```html
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>ClientesApp</title>
+  <base href='/'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='icon' type='image/x-icon' href='favicon.ico'>
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
+```
+
+Cuando se modifica el archivo `angular.json` o cualquiera de configuración es posible que se tenga que reiniciar el servidor.
+
 ## Actualización: configurando los styles y scripts en archivo angular.json 00:19
 
 ## Instalando Bootstrap utilizando el comando npm desde el terminal 03:55
