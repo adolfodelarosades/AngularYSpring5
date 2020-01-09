@@ -262,6 +262,32 @@ Se debe a que estamos trabajando y estamos actualizados
 
 ## Configurando e integrando Bootstrap de forma local en nuestra app 05:32
 
+### Primera forma
+
+* En la carpeta `assets` crear las carpetas `css` y `js`.
+* Descargar los archivos `css` y `js` de bootstrap y meterlo en estas carpetas.
+* En el archivo `index.html` hacer referencia a los archivos locales.
+```html
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>ClientesApp</title>
+  <base href='/'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='icon' type='image/x-icon' href='favicon.ico'>
+  <link rel='stylesheet' href='assets/css/bootstrap.min.css'>
+
+</head>
+<body>
+  <app-root></app-root>
+  <script src='assets/js/jquery-3.4.1.slim.min.js'></script>
+  <script src='assets/js/popper.min.js'></script>
+  <script src='assets/js//bootstrap.min.js'></script>
+</body>
+</html>
+```
+
 ## Actualización: configurando los styles y scripts en archivo angular.json 00:19
 
 ## Instalando Bootstrap utilizando el comando npm desde el terminal 03:55
