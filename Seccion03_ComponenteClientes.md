@@ -265,7 +265,7 @@ Se debe a que estamos trabajando y estamos actualizados
 ### Primera forma
 
 * En la carpeta `assets` crear las carpetas `css` y `js`.
-* Descargar los archivos `css` y `js` de bootstrap y meterlo en estas carpetas.
+* Descargar los archivos de bootstrap y meterlo en las carpetas `css` y `js`.
 * En el archivo `index.html` hacer referencia a los archivos locales.
 ```html
 <!doctype html>
@@ -324,4 +324,30 @@ Cuando se modifica el archivo `angular.json` o cualquiera de configuración es p
 
 ## Actualización: configurando los styles y scripts en archivo angular.json 00:19
 
+Esto es un adelanto a la próxima clase, para dejar en claro las diferencias entre los archivos angular.cli.json y angular.json respecto a configurar nuestras hojas de estilos "styles" y librerías js "scripts".
+
+En las rutas de los "styles" y "scripts" de node_modules, debemos que cambiar esto: ../node_modules/ 
+
+por esto: node_modules/ (es decir NO hay que incluir el ../ al principio).
+
 ## Instalando Bootstrap utilizando el comando npm desde el terminal 03:55
+
+Para instalar Bootstrap con npm debemos ejecutar el comando:
+
+`npm install bootstrap@4.1.1 jquery popper.js -save`
+
+Con `--save` lo que se hace es guardar la dependencia en `package.json`
+
+* En `angular.json` hacer las referencias a los archivos que se acaban de instalar dentro de `node_modules`.
+```js
+"styles": [
+  "src/styles.css",
+  "node_modules/bootstrap/dist/css/bootstrap.min.css"
+],
+"scripts": [
+  "node_modules/jquery/dist/jquery.slim.min.js",
+  "node_modules/popper.js/dist/umd/popper.min.js",
+  "node_modules/bootstrap/dist/js//bootstrap.min.js"
+]
+```
+* Eliminar las carpetas `css` y `js` que metimos en `assets`.
