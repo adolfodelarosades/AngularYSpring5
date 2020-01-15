@@ -131,10 +131,53 @@ Por lo tanto de forma automática cuando se envíe el formulario, va a invocar a
 
 Aun no podemos probar este componente por que hay que crear la ruta del componente.
 
-
 ### Configurando la ruta y navegación del formulario 04:55
 
-:+1: Angular
+Continuamos creando las rutas de nuestro formulario.
+
+* Ir a `app.module.ts` donde tenemos el array de las rutas.
+* Incluir en el array de las rutas una nueva entrada:
+`{path: 'clientes/form', component: FormComponent}`
+Con esto tenemos mapeada nuestra ruta, nuestra URL (`'clientes/form'`) a nuestrio componente `FormComponent`. Por lo tanto ahora podemos crear el link.
+
+* Ir a `clientes.component.html` sobre la `table` introducimos el siguiente código:
+```html
+ <div class="my-2 text-left">
+    <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/clientes/form']">Crear Cliente</button>
+</div>
+```
+Lo que hace la directiva `[routerLink]` (un *View Helper*) nos permite crear Links hacia nuestras rutas internas de nuestro proyecto, es decir rutas mapeaddas a nuestros componente y que estan registradas en `routes`.
+
+Si probamos nuestra aplicación justo arriba del listado de clientes nos aparece el botón `Crear Cliente` que si lo pulsamos hace que aparezca nuestro formulario donde debemos introducir nuestros datos `Nombre Apellido e Email`, al hacerlo y pulsar el botón `Crear` en la consola se nos muestra:
+
+```
+Clicked
+Cliente {nombre: "Adolfo", apellido: "De la Rosa", email: "adolfo@gmail.com"}
+nombre: "Adolfo"
+apellido: "De la Rosa"
+email: "adolfo@gmail.com"
+__proto__: Object
+````
+
+Imprimimos el objeto cliente que contiene la representación de sus datos en estructura JSON, está funcionando perfecto.
+
+Vamos a ver la bidireccionalidad ya vimos cómo enviar desde el formulario a los campos al componente. Pero también podría ser todo a la inversa es decir del Backend a Angular. Para simular por el momento este trabajo:
+
+* Ir al archivo `cliente.ys`
+* Iniciar los campos:
+```js
+export class Cliente {
+    id: number;
+    nombre: string = 'Pepe';
+    apellido: string = 'El Toro';
+    createAt: string ;
+    email: string = 'pepeeltoro@gmail.com';
+}
+```
+
+Al probar la aplicación e ir a Crear Cliente los datos aparecerán en los campos del formulario.
+
+Por lo tanto el objeto `cliente` que es un atributo del componente `FormComponent` está mapeado al formulario y es bidireccional.
 
 ### Escribiendo implementación crear en el cliente.service.ts y en form.component.ts 06:00
 
